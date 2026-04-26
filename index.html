@@ -289,8 +289,10 @@
     .cursor-glow { position: fixed; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(201,169,110,0.05) 0%, transparent 70%); pointer-events: none; z-index: 999; transform: translate(-50%,-50%); transition: left 0.12s ease, top 0.12s ease; }
 
     @media (max-width: 768px) {
-      nav { padding: 20px 24px; }
-      nav ul { gap: 20px; }
+      nav { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+      nav ul { gap: 14px; flex-wrap: wrap; }
+      nav a { font-size: 11px; letter-spacing: 0.06em; }
+      .logo { font-size: 17px; }
       .hero { grid-template-columns: 1fr; padding: 60px 24px 40px; gap: 48px; min-height: auto; }
       h1 { font-size: 52px; }
       .photo-wrap { width: 260px; margin: 0 auto; }
