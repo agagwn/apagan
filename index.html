@@ -21,7 +21,12 @@
       --border: rgba(232,226,217,0.08);
       --border-mid: rgba(232,226,217,0.15);
     }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    /* FIX MOBILE HORIZONTAL SCROLL */
+    html, body { max-width: 100%; overflow-x: hidden; }
+    * { max-width: 100%; }
+
     body {
       font-family: 'DM Sans', Georgia, sans-serif;
       background: var(--bg);
@@ -473,7 +478,7 @@
       <div class="k-card reveal d4">
         <div class="k-num">04</div>
         <div class="k-title">Native AI User</div>
-        <div class="k-desc">Namanya juga Gen Z — AI itu bukan tren, itu alat. Selalu pakai AI buat hal yang bermakna, bukan cuma gaya-gayaan. That's just how i move.</div>
+        <div class="k-desc">Namanya juga Gen Z — AI itu bukan tren, itu alat. Selalu pakai AI buat hal yang bermakna, bukan cuma gaya-gayaan. That's just how we move.</div>
       </div>
     </div>
   </section>
