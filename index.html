@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>APAGAN — Mohamad Afgan Putra Pratama</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #c9a96e;
+      --gold-light: #e8c989;
+      --bg: #0d0d0d;
+      --bg2: #111010;
+      --bg3: #161514;
+      --text: #e8e2d9;
+      --text-muted: rgba(232,226,217,0.45);
+      --text-dim: rgba(232,226,217,0.2);
+      --border: rgba(232,226,217,0.08);
+      --border-mid: rgba(232,226,217,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* GRAIN */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 200;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 56px;
+      background: rgba(13,13,13,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      letter-spacing: 0.14em;
+      color: var(--text);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    nav a {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 64px;
+      align-items: center;
+      padding: 100px 56px 80px;
+    }
+
+    .hero-tag {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 0.5px;
+      background: var(--gold);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 76px;
+      line-height: 0.93;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+
+    .hero-fullname {
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+
+    .disclaimer {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201,169,110,0.07);
+      border: 0.5px solid rgba(201,169,110,0.25);
+      padding: 8px 16px;
+      margin-bottom: 32px;
+      border-radius: 2px;
+    }
+    .disclaimer span {
+      font-size: 12px;
+      color: var(--gold);
+      line-height: 1.6;
+    }
+    .disclaimer .icon { font-size: 14px; }
+
+    .hero-desc {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--text-muted);
+      max-width: 460px;
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      margin-top: 44px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #0d0d0d;
+      border: none;
+      padding: 13px 30px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .btn-gold:hover { background: var(--gold-light); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-muted);
+      border: 0.5px solid var(--border-mid);
+      padding: 13px 30px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* PHOTO */
+    .hero-photo {
+      position: relative;
+      width: 100%;
+    }
+    .photo-wrap {
+      position: relative;
+      width: 340px;
+      aspect-ratio: 3/4;
+      margin-left: auto;
+    }
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(20%) contrast(1.05);
+    }
+    .photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -18px -18px 18px 18px;
+      border: 0.5px solid rgba(201,169,110,0.25);
+      z-index: -1;
+    }
+    .photo-caption {
+      position: absolute;
+      bottom: -18px;
+      right: 0;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      background: var(--bg);
+      padding: 7px 14px;
+      border: 0.5px solid var(--border);
+    }
+
+    /* DIVIDER */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 56px;
+    }
+    .section-divider .line { flex: 1; height: 0.5px; background: var(--border); }
+    .section-divider .label {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* JOURNEY */
+    .journey {
+      padding: 80px 56px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 56px;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 0;
+      width: 0.5px;
+      background: var(--border-mid);
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 48px;
+    }
+    .tl-item:last-child { margin-bottom: 0; }
+
+    .tl-dot {
+      position: absolute;
+      left: -38px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border: 0.5px solid var(--gold);
+      background: var(--bg);
+      border-radius: 50%;
+    }
+    .tl-item.current .tl-dot {
+      background: var(--gold);
+    }
+
+    .tl-year {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .tl-school {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .tl-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .tl-badge {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 0.5px solid rgba(201,169,110,0.3);
+      padding: 4px 12px;
+    }
+
+    /* ACHIEVEMENT */
+    .achievement-box {
+      margin-top: 56px;
+      background: var(--bg3);
+      border: 0.5px solid rgba(201,169,110,0.2);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .ach-icon {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      color: rgba(201,169,110,0.15);
+      font-style: italic;
+      line-height: 1;
+    }
+
+    .ach-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .ach-sub {
+      font-size: 14px;
+      color: var(--gold);
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    .ach-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* KARAKTER */
+    .karakter {
+      padding: 80px 56px;
+      background: var(--bg2);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .karakter-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 56px;
+    }
+
+    .k-card {
+      background: var(--bg2);
+      padding: 36px 28px;
+      transition: background 0.25s;
+    }
+    .k-card:hover { background: var(--bg3); }
+
+    .k-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      color: rgba(201,169,110,0.12);
+      font-style: italic;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .k-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .k-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* MIMPI */
+    .mimpi {
+      padding: 80px 56px;
+    }
+
+    .mimpi-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .dream-list {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .dream-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 24px;
+      border: 0.5px solid var(--border);
+      transition: border-color 0.2s;
+    }
+    .dream-item:hover { border-color: rgba(201,169,110,0.2); }
+
+    .dream-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .dream-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .dream-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .dream-tag {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      border: 0.5px solid var(--border);
+      padding: 3px 10px;
+    }
+
+    .mimpi-right {}
+
+    .quote-big {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 32px;
+      line-height: 1.4;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .quote-big em { color: var(--gold); font-style: italic; }
+
+    .quote-note {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      font-weight: 300;
+      border-left: 2px solid var(--gold);
+      padding-left: 20px;
+      margin-top: 32px;
+    }
+
+    /* MUSIK */
+    .musik {
+      padding: 80px 56px;
+      background: var(--bg2);
+      border-top: 0.5px solid var(--border);
+    }
+
+    .musik-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .song-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+    }
+
+    .song-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      line-height: 1.0;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .song-artist {
+      font-size: 16px;
+      color: var(--gold);
+      margin-bottom: 28px;
+      font-weight: 300;
+    }
+
+    .song-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--text-muted);
+      border-left: 2px solid var(--gold);
+      padding-left: 22px;
+    }
+
+    .artists-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .artist-row-card {
+      background: var(--bg2);
+      padding: 24px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    .artist-row-card:hover { background: var(--bg3); }
+
+    .ar-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: rgba(201,169,110,0.12);
+      font-style: italic;
+      width: 40px;
+    }
+
+    .ar-info { flex: 1; padding: 0 20px; }
+
+    .ar-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--text);
+    }
+
+    .ar-genre {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .ar-tag {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 0.5px solid rgba(201,169,110,0.25);
+      padding: 4px 12px;
+    }
+
+    /* WAVEFORM */
+    .waveform-wrap {
+      margin-bottom: 32px;
+    }
+    .wf-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+    .waveform {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 60px;
+    }
+    .wv-bar {
+      width: 3px;
+      background: linear-gradient(to top, var(--gold), rgba(201,169,110,0.15));
+      border-radius: 2px;
+      animation: wv 1.4s ease-in-out infinite;
+    }
+    @keyframes wv {
+      0%, 100% { transform: scaleY(0.25); }
+      50% { transform: scaleY(1); }
+    }
+
+    /* WEBSITE NOTE */
+    .website-note {
+      padding: 80px 56px;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .note-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .note-icon {
+      font-size: 36px;
+      margin-bottom: 24px;
+    }
+
+    .note-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .note-title em { font-style: italic; color: var(--gold); }
+
+    .note-text {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.9;
+      font-weight: 300;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 40px 56px;
+      border-top: 0.5px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-left .fl-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--text-muted);
+    }
+    .footer-left .fl-sub {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+
+    .footer-link {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--border-mid);
+      padding-bottom: 2px;
+      transition: all 0.2s;
+    }
+    .footer-link:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      nav ul { gap: 20px; }
+      .hero { grid-template-columns: 1fr; padding: 60px 24px 40px; gap: 48px; min-height: auto; }
+      h1 { font-size: 52px; }
+      .photo-wrap { width: 260px; margin: 0 auto; }
+      .journey, .karakter, .mimpi, .musik, .website-note, footer { padding: 56px 24px; }
+      .karakter-grid { grid-template-columns: 1fr 1fr; }
+      .mimpi-inner, .musik-inner { grid-template-columns: 1fr; gap: 48px; }
+      .section-divider { padding: 0 24px; }
+      .achievement-box { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    /* AI SECTION */
+    .ai-badge-wrap {
+      margin-top: 48px;
+      border: 0.5px solid rgba(201,169,110,0.2);
+      padding: 32px;
+      background: rgba(201,169,110,0.03);
+    }
+
+    .ai-bar {
+      height: 3px;
+      background: rgba(232,226,217,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .ai-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 2px;
+      animation: fillBar 1.5s ease-out forwards;
+    }
+
+    @keyframes fillBar {
+      from { width: 0% !important; }
+    }
+
+    .ai-stats {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .ai-stat-item { text-align: center; }
+
+    .ai-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--gold);
+      font-style: italic;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .ai-stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    .ai-note {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 20px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .ai-tools {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .ai-tool-tag {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 0.5px solid rgba(201,169,110,0.3);
+      padding: 5px 14px;
+    }
+
+    .k-card-ai {
+      border-left: 0.5px solid rgba(201,169,110,0.15);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">APAGAN</div>
+    <ul>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#mimpi">Mimpi</a></li>
+      <li><a href="#musik">Musik</a></li>
+      <li><a href="https://www.instagram.com/afgan_tunyo" target="_blank">Instagram</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="tentang">
+    <div class="hero-left">
+      <div class="hero-tag">Gorontalo · Kelas 10 · SMAN 1</div>
+      <h1>Mohamad<br><em>Afgan</em><br>Putra P.</h1>
+      <div class="hero-fullname">Mohamad Afgan Putra Pratama S.D Tunyo</div>
+
+      <div class="disclaimer">
+        <span class="icon">🎤</span>
+        <span>Bukan Afgan yang nyanyi "Kacamata" — tapi semoga suatu hari bisa sehebat itu.</span>
+      </div>
+
+      <p class="hero-desc">
+        Murid pintar sekaligus bandel — dan gak terlalu mempedulikannya. Selalu penasaran sama hal-hal menarik: dari dunia bisnis kopi, musik indie, sampai mimpi kuliah ke luar negeri.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#mimpi" class="btn-gold">Lihat Mimpi-Mimpi</a>
+        <a href="https://www.instagram.com/afgan_tunyo" target="_blank" class="btn-outline">Instagram →</a>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <div class="photo-wrap">
+        <img src="https://framerusercontent.com/images/0JiXch6i4OToQEltz8EYPvx2g.jpg" alt="Afgan" />
+        <div class="photo-caption">APAGAN · Gorontalo</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">
+    <div class="line"></div>
+    <div class="label">Perjalanan Sekolah</div>
+    <div class="line"></div>
+  </div>
+
+  <!-- JOURNEY -->
+  <section class="journey">
+    <div class="section-title">Dari <em>SD</em> sampai<br>SMAN yang Bergengsi</div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">Awal Mula</div>
+        <div class="tl-school">SD Negeri 38 Kota Gorontalo</div>
+        <div class="tl-desc">Di sinilah semuanya dimulai — fondasi pertama dari rasa ingin tahu yang nggak pernah padam.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">SMP</div>
+        <div class="tl-school">SMPN 5 Kota Gorontalo</div>
+        <div class="tl-desc">Masa-masa eksplorasi — mulai mengenal siapa diri sendiri, apa yang disukai, dan ke mana arah yang ingin dituju.</div>
+      </div>
+
+      <div class="tl-item current">
+        <div class="tl-dot"></div>
+        <div class="tl-year">Sekarang · Kelas 10</div>
+        <div class="tl-school">SMA Negeri 1 Gorontalo</div>
+        <div class="tl-desc">SMAN 1 — salah satu sekolah terbaik di Gorontalo. Pintar, tapi tetap jadi diri sendiri.</div>
+        <div class="tl-badge">✦ Sedang Berlangsung</div>
+      </div>
+    </div>
+
+    <!-- ACHIEVEMENT -->
+    <div class="achievement-box">
+      <div class="ach-icon">✦</div>
+      <div>
+        <div class="ach-title">Putra Persahabatan SMANSA 2025</div>
+        <div class="ach-sub">Pemilihan Putra Putri & Duta SMAN 1 Gorontalo</div>
+        <div class="ach-desc">
+          Bukan hal yang mudah — tapi Alhamdulillah, terpilih jadi Putra Persahabatan 2025. Ini bukti bahwa jadi diri sendiri, autentik, dan genuine itu cukup. Nggak perlu pura-pura sempurna.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">
+    <div class="line"></div>
+    <div class="label">Karakter</div>
+    <div class="line"></div>
+  </div>
+
+  <!-- KARAKTER -->
+  <section class="karakter">
+    <div class="section-title">Siapa <em>Sebenarnya</em><br>Afgan?</div>
+
+    <div class="karakter-grid">
+      <div class="k-card">
+        <div class="k-num">01</div>
+        <div class="k-title">Pintar & Bandel</div>
+        <div class="k-desc">Kombinasi yang langka — otak jalan, tapi jiwa bebas. Nggak ikutin semua aturan, tapi tetap punya prinsip sendiri. Dan gak terlalu peduliin apa kata orang.</div>
+      </div>
+      <div class="k-card">
+        <div class="k-num">02</div>
+        <div class="k-title">Penasaran Tanpa Batas</div>
+        <div class="k-desc">Kalau sesuatu terasa menarik, gak bisa berhenti sampai mengerti. Dari cara kerja bisnis kopi, sampai bikin website ini — semuanya dimulai dari rasa ingin tahu.</div>
+      </div>
+      <div class="k-card">
+        <div class="k-num">03</div>
+        <div class="k-title">Realistis tapi Bermimpi</div>
+        <div class="k-desc">Sadar mimpi ke Jepang, London, atau Korea itu butuh perjuangan keras. Tapi mimpi itu tetap ada — dan beasiswa bisa jadi jalannya, walau belum yakin sepenuhnya.</div>
+      </div>
+      <div class="k-card k-card-ai">
+        <div class="k-num">04</div>
+        <div class="k-title">Native AI User</div>
+        <div class="k-desc">Namanya juga Gen Z — AI itu bukan tren, itu alat. Dari nulis, riset, sampai bikin website ini. Tahu cara pakainya buat hal yang bermakna, bukan cuma buat gaya-gayaan.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">
+    <div class="line"></div>
+    <div class="label">Mimpi & Ambisi</div>
+    <div class="line"></div>
+  </div>
+
+  <!-- MIMPI -->
+  <section class="mimpi" id="mimpi">
+    <div class="mimpi-inner">
+      <div>
+        <div class="section-title">Mimpi yang<br><em>Sedang</em><br>Dibangun</div>
+
+        <div class="dream-list">
+          <div class="dream-item">
+            <div class="dream-icon">☕</div>
+            <div>
+              <div class="dream-title">Pemilik Warkop ala Kopi Kenangan</div>
+              <div class="dream-desc">Pengen banget ngerti bisnis kopi — Gacoan, Kopi Kenangan, Fore, Tuku. Step by step belajar dari imajinasi, seolah jadi barista beneran dulu sebelum jadi owner.</div>
+              <div class="dream-tag">Step by step</div>
+            </div>
+          </div>
+
+          <div class="dream-item">
+            <div class="dream-icon">✈️</div>
+            <div>
+              <div class="dream-title">Kuliah ke Luar Negeri</div>
+              <div class="dream-desc">Jepang? London? Korea? Mimpi. Tapi mimpi yang tetap ada — dengan beasiswa sebagai jalan, walau belum sepenuhnya yakin bisa. Yang penting tetap realistis sambil terus usaha.</div>
+              <div class="dream-tag">Sedang dipertimbangkan</div>
+            </div>
+          </div>
+
+          <div class="dream-item">
+            <div class="dream-icon">💻</div>
+            <div>
+              <div class="dream-title">Bikin Hal yang Berguna</div>
+              <div class="dream-desc">Website ini adalah salah satu proyek yang dibuat dengan niat — entah kapan berguna, tapi dibuat dengan serius. Karena hal-hal besar selalu dimulai dari langkah kecil yang tulus.</div>
+              <div class="dream-tag">Proyek nyata</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mimpi-right">
+        <div class="quote-big">
+          "Harus tetap <em>realistis</em> — tapi mimpi itu nggak boleh mati."
+        </div>
+
+        <div class="quote-note">
+          Kuliah ke luar negeri sambil punya warkop sendiri seperti Kopi Kenangan atau Tuku — kedengarannya jauh, tapi setiap langkah kecil hari ini adalah bagian dari jalan ke sana. Website ini pun bagian dari itu.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">
+    <div class="line"></div>
+    <div class="label">Musik</div>
+    <div class="line"></div>
+  </div>
+
+  <!-- MUSIK -->
+  <section class="musik" id="musik">
+    <div class="musik-inner">
+      <div>
+        <div class="song-label">Lagu Paling Berkesan</div>
+        <div class="song-title">Loved<br>by You</div>
+        <div class="song-artist">Hindia</div>
+        <div class="song-quote">
+          Setiap baitnya terasa personal dan penuh makna — lagu yang nggak pernah bosan untuk diputar.
+        </div>
+      </div>
+
+      <div>
+        <div class="waveform-wrap">
+          <div class="wf-label">Now playing</div>
+          <div class="waveform" id="waveform"></div>
+        </div>
+
+        <div class="artists-row">
+          <div class="artist-row-card">
+            <div class="ar-num">01</div>
+            <div class="ar-info">
+              <div class="ar-name">Hindia</div>
+              <div class="ar-genre">Indie Pop · Personal · Dalam</div>
+            </div>
+            <div class="ar-tag">Favorit</div>
+          </div>
+          <div class="artist-row-card">
+            <div class="ar-num">02</div>
+            <div class="ar-info">
+              <div class="ar-name">Sal Priadi</div>
+              <div class="ar-genre">Folk · Indie · Tulus</div>
+            </div>
+            <div class="ar-tag">Top 3</div>
+          </div>
+          <div class="artist-row-card">
+            <div class="ar-num">03</div>
+            <div class="ar-info">
+              <div class="ar-name">Perunggu</div>
+              <div class="ar-genre">Alternative · Energik</div>
+            </div>
+            <div class="ar-tag">Top 3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEBSITE NOTE -->
+  <section class="website-note">
+    <div class="note-inner">
+      <div class="note-icon">🌱</div>
+      <div class="note-title">Tentang <em>Website</em> Ini</div>
+      <p class="note-text">
+        Ini salah satu proyek yang dibuat dengan niat — bukan tugas, bukan terpaksa. Entah mungkin akan berguna suatu hari nanti, tapi dibuat dengan serius, dengan rasa ingin tahu yang sama seperti ketika pertama kali tertarik sama dunia kopi, bisnis, dan musik. Karena sesuatu yang dimulai dari ketulusan, selalu punya tempatnya sendiri.
+      </p>
+
+      <div class="ai-badge-wrap">
+        <div class="ai-bar">
+          <div class="ai-fill" style="width: 80%"></div>
+        </div>
+        <div class="ai-stats">
+          <div class="ai-stat-item">
+            <div class="ai-stat-num">80%</div>
+            <div class="ai-stat-label">Dibuat oleh AI</div>
+          </div>
+          <div class="ai-stat-item">
+            <div class="ai-stat-num">20%</div>
+            <div class="ai-stat-label">Ide, arah & jiwa — dari Afgan</div>
+          </div>
+        </div>
+        <div class="ai-note">
+          Transparan aja — website ini 80% dikerjain AI. Tapi ide, cerita, dan keputusan akhirnya? Tetap dari gue. Namanya juga Gen Z, kita tahu cara manfaatin tools yang ada. Bukan curang — itu skill.
+        </div>
+        <div class="ai-tools">
+          <span class="ai-tool-tag">Claude AI</span>
+          <span class="ai-tool-tag">Prompt Engineering</span>
+          <span class="ai-tool-tag">Gen Z Energy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <div class="fl-name">Mohamad Afgan Putra Pratama S.D Tunyo</div>
+      <div class="fl-sub">Kelas 10 · SMAN 1 Gorontalo · 2025</div>
+    </div>
+    <a href="https://www.instagram.com/afgan_tunyo" target="_blank" class="footer-link">@afgan_tunyo →</a>
+  </footer>
+
+  <script>
+    // Waveform animation
+    const wv = document.getElementById('waveform');
+    const heights = [18,30,52,68,45,78,58,42,70,55,36,63,48,75,40,65,50,28,60,44,72,38,54,78,32,55,42,68,25,50];
+    heights.forEach((h, i) => {
+      const bar = document.createElement('div');
+      bar.className = 'wv-bar';
+      bar.style.height = h + 'px';
+      bar.style.animationDelay = (i * 0.065) + 's';
+      wv.appendChild(bar);
+    });
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
