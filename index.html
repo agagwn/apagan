@@ -950,22 +950,102 @@
 
     // ===== COUNTDOWN =====
     function updateCountdown() {
+      const cdDays = document.getElementById('cdDays');
+      const cdHours = document.getElementById('cdHours');
+      const cdMins = document.getElementById('cdMins');
+      const cdSecs = document.getElementById('cdSecs');
+      if (!cdDays || !cdHours || !cdMins || !cdSecs) return;
       const now = new Date();
       const year = now.getMonth() >= 6 ? now.getFullYear() + 1 : now.getFullYear();
       const bday = new Date(year, 6, 1, 0, 0, 0);
       const diff = bday - now;
       if (diff <= 0) {
-        document.getElementById('cdDays').textContent = '🎂';
+        cdDays.textContent = '🎂'; cdHours.textContent = '00';
+        cdMins.textContent = '00'; cdSecs.textContent = '00';
         return;
       }
       const days = Math.floor(diff / (1000*60*60*24));
       const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
       const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
       const secs = Math.floor((diff % (1000*60)) / 1000);
-      document.getElementById('cdDays').textContent = String(days).padStart(2,'0');
-      document.getElementById('cdHours').textContent = String(hours).padStart(2,'0');
-      document.getElementById('cdMins').textContent = String(mins).padStart(2,'0');
-      document.getElementById('cdSecs').textContent = String(secs).padStart(2,'0');
+      cdDays.textContent = String(days).padStart(2,'0');
+      cdHours.textContent = String(hours).padStart(2,'0');
+      cdMins.textContent = String(mins).padStart(2,'0');
+      cdSecs.textContent = String(secs).padStart(2,'0');
+    }
+    // Wait for DOM then start countdown
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    });
+
+    // guestbook handled below
+
+
+    // ===== LOADING SCREEN =====
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loader = document.getElementById('loader');
+        if (loader) loader.classList.add('hide');
+      }, 2200);
+    });
+
+    // ===== COOKIE "BALIK LAGI" =====
+    function setCookie(name, val, days) {
+      const d = new Date();
+      d.setTime(d.getTime() + (days*24*60*60*1000));
+      document.cookie = name + "=" + val + ";expires=" + d.toUTCString() + ";path=/";
+    }
+    function getCookie(name) {
+      const ca = document.cookie.split(';');
+      for(let c of ca) {
+        c = c.trim();
+        if (c.startsWith(name + '=')) return c.substring(name.length + 1);
+      }
+      return "";
+    }
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const notif = document.getElementById('cookieNotif');
+        if (!notif) return;
+        if (getCookie('apagan_visited') === 'yes') {
+          setTimeout(() => {
+            notif.classList.add('show');
+            setTimeout(() => notif.classList.remove('show'), 4000);
+          }, 2800);
+        } else {
+          setCookie('apagan_visited', 'yes', 365);
+        }
+      }, 100);
+    });
+
+    // ===== PARALLAX =====
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const heroPhoto = document.querySelector('.hero-photo');
+      if (heroPhoto) heroPhoto.style.transform = `translateY(${scrollY * 0.1}px)`;
+    });
+
+    // ===== COUNTDOWN =====
+    function updateCountdown() {
+      const cdDays = document.getElementById('cdDays');
+      const cdHours = document.getElementById('cdHours');
+      const cdMins = document.getElementById('cdMins');
+      const cdSecs = document.getElementById('cdSecs');
+      if (!cdDays) return;
+      const now = new Date();
+      const year = (now.getMonth() > 5 || (now.getMonth() === 5 && now.getDate() >= 1)) ? now.getFullYear() + 1 : now.getFullYear();
+      const bday = new Date(year, 6, 1, 0, 0, 0);
+      const diff = bday - now;
+      if (diff <= 0) {
+        cdDays.textContent = '🎂'; cdHours.textContent = '00';
+        cdMins.textContent = '00'; cdSecs.textContent = '00';
+        return;
+      }
+      cdDays.textContent = String(Math.floor(diff/(1000*60*60*24))).padStart(2,'0');
+      cdHours.textContent = String(Math.floor((diff%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
+      cdMins.textContent = String(Math.floor((diff%(1000*60*60))/(1000*60))).padStart(2,'0');
+      cdSecs.textContent = String(Math.floor((diff%(1000*60))/1000)).padStart(2,'0');
     }
     setInterval(updateCountdown, 1000);
     updateCountdown();
@@ -976,14 +1056,12 @@
 
     async function loadMessages() {
       try {
-        const res = await fetch(`${SUPA_URL}/rest/v1/guestbook?select=*&order=created_at.desc&limit=20`, {
-          headers: {
-            'apikey': SUPA_KEY,
-            'Authorization': 'Bearer ' + SUPA_KEY
-          }
+        const res = await fetch(`${SUPA_URL}/rest/v1/guestbook?select=*&order=created_at.desc&limit=30`, {
+          headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY }
         });
         const data = await res.json();
         const container = document.getElementById('gbMessages');
+        if (!container) return;
         if (!data.length) {
           container.innerHTML = '<div class="gb-empty">Belum ada pesan. Jadilah yang pertama! ✨</div>';
           return;
@@ -1003,9 +1081,12 @@
     }
 
     async function submitMsg() {
-      const text = document.getElementById('gbText').value.trim();
-      if (!text) return;
+      const textEl = document.getElementById('gbText');
       const btn = document.getElementById('gbBtn');
+      const success = document.getElementById('gbSuccess');
+      if (!textEl || !btn) return;
+      const text = textEl.value.trim();
+      if (!text) return;
       btn.disabled = true;
       btn.textContent = 'Mengirim...';
       try {
@@ -1020,9 +1101,8 @@
           body: JSON.stringify({ message: text })
         });
         if (res.ok || res.status === 201) {
-          document.getElementById('gbText').value = '';
-          document.getElementById('gbSuccess').style.display = 'block';
-          setTimeout(() => document.getElementById('gbSuccess').style.display = 'none', 3000);
+          textEl.value = '';
+          if (success) { success.style.display = 'block'; setTimeout(() => success.style.display = 'none', 3000); }
           loadMessages();
         }
       } catch(e) { console.log('Submit error:', e); }
@@ -1044,13 +1124,15 @@
     });
 
     // SCROLL REVEAL
-    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1 });
-    revealEls.forEach(el => observer.observe(el));
+    document.addEventListener('DOMContentLoaded', () => {
+      const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+      revealEls.forEach(el => observer.observe(el));
+    });
 
     // CURSOR GLOW
     const glow = document.getElementById('cursorGlow');
