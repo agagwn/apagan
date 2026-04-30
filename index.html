@@ -897,6 +897,40 @@
     </div>
   </section>
 
+
+  <!-- COUNTDOWN -->
+  <div class="section-divider"><div class="line"></div><div class="label">Ulang Tahun</div><div class="line"></div></div>
+  <section class="countdown-section">
+    <div class="countdown-label">Hitung Mundur</div>
+    <div class="countdown-title">Menuju Ulang Tahun <em>Afgan</em> 🎂</div>
+    <div class="countdown-grid">
+      <div class="countdown-item"><div class="countdown-num" id="cdDays">00</div><div class="countdown-unit">Hari</div></div>
+      <div class="countdown-item"><div class="countdown-num" id="cdHours">00</div><div class="countdown-unit">Jam</div></div>
+      <div class="countdown-item"><div class="countdown-num" id="cdMins">00</div><div class="countdown-unit">Menit</div></div>
+      <div class="countdown-item"><div class="countdown-num" id="cdSecs">00</div><div class="countdown-unit">Detik</div></div>
+    </div>
+  </section>
+
+  <!-- GUESTBOOK -->
+  <div class="section-divider"><div class="line"></div><div class="label">Pesan Anonim</div><div class="line"></div></div>
+  <section class="guestbook">
+    <div class="gb-inner">
+      <div class="section-title">Tinggalkan <em>Pesanmu</em></div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:28px;font-weight:300;margin-top:-36px;">Kayak NGL — anonim, bebas, jujur 👀</p>
+      <div class="gb-form">
+        <textarea class="gb-textarea" id="gbText" placeholder="Tulis pesan buat Afgan... 👋" maxlength="300"></textarea>
+        <div class="gb-footer">
+          <span class="gb-hint">✦ Anonim · Maks 300 karakter</span>
+          <button class="gb-submit" id="gbBtn" onclick="submitMsg()">Kirim Pesan →</button>
+        </div>
+        <div class="gb-success" id="gbSuccess">✦ Pesan terkirim! Makasih udah mampir 🎵</div>
+      </div>
+      <div class="gb-messages" id="gbMessages">
+        <div class="gb-empty">Belum ada pesan. Jadilah yang pertama! ✨</div>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div>
       <div class="fl-name">Mohamad Afgan Putra Pratama S.D Tunyo</div>
