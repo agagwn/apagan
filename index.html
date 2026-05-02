@@ -536,11 +536,10 @@
       border: 1.5px solid rgba(201,169,110,0.15);
       border-top-color: var(--gold);
       border-radius: 50%;
-      animation: spin 0.9s linear infinite;
       opacity: 0;
-      animation: spin 0.9s linear infinite, loaderFade 0.5s ease 0.6s forwards;
+      animation: loaderFade 0.5s ease 0.6s forwards, spin 0.9s linear 0.6s infinite;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
     .loader-text {
       font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
@@ -1078,15 +1077,17 @@
     }
 
     // Animate progress
-    setTimeout(() => updateLoader(20, 0), 800);
-    setTimeout(() => updateLoader(45, 1), 1200);
-    setTimeout(() => updateLoader(70, 2), 1700);
-    setTimeout(() => updateLoader(90, 3), 2100);
-    setTimeout(() => updateLoader(100, 4), 2500);
-    setTimeout(() => {
-      const loader = document.getElementById('loader');
-      if (loader) loader.classList.add('hide');
-    }, 3000);
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => updateLoader(20, 0), 800);
+      setTimeout(() => updateLoader(45, 1), 1300);
+      setTimeout(() => updateLoader(70, 2), 1800);
+      setTimeout(() => updateLoader(90, 3), 2200);
+      setTimeout(() => updateLoader(100, 4), 2600);
+      setTimeout(() => {
+        const loader = document.getElementById('loader');
+        if (loader) loader.classList.add('hide');
+      }, 3200);
+    });
 
     // ===== COOKIE "BALIK LAGI" =====
     function setCookie(name, val, days) {
